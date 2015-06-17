@@ -1,0 +1,12 @@
+jira:
+  host: https://jira.domain.com
+  api_path: /rest/api/2
+  activity_path: /activity
+  auth:
+   login: username
+   password: password
+  priority_color:
+    P0: danger
+    P1: danger
+    P2: warning
+    P3: good
