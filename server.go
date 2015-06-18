@@ -12,7 +12,7 @@ func StartServer(host, port, path string) {
 		path = "/"
 	}
 
-	http.HandleFunc(path, commandHandler)
+	http.HandleFunc(path, Handler)
 
 	address := host + ":" + port
 

@@ -49,7 +49,7 @@ func TestCommandHandler(t *testing.T) {
 	req = &http.Request{}
 	req.Method = "POST"
 
-	commandHandler(w, req)
+	Handler(w, req)
 	assert.Equal(adminMsg, w.data)
 
 	// case payload invalid
@@ -57,7 +57,7 @@ func TestCommandHandler(t *testing.T) {
 	req.PostForm = payload
 	req.Form = payload
 
-	commandHandler(w, req)
+	Handler(w, req)
 	assert.Equal(adminMsg, w.data)
 
 	// case command not found
@@ -66,16 +66,16 @@ func TestCommandHandler(t *testing.T) {
 	payload.Set("channel_name", "general")
 	payload.Set("channel_id", "T2029")
 
-	commandHandler(w, req)
+	Handler(w, req)
 	assert.Equal(`Command "/abc" was not found`, w.data)
 
 	payload.Set("command", "/command1")
-	commandHandler(w, req)
+	Handler(w, req)
 	assert.Equal("Command executed", w.data)
 
 	// case wrong tocken
 	payload.Set("token", "102932083213")
-	commandHandler(w, req)
+	Handler(w, req)
 	assert.Equal(adminMsg, w.data)
 }
 

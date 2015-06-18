@@ -53,7 +53,8 @@ func registerByName(name string, cmd Commander) {
 	regCommand[name] = cmd
 }
 
-func commandHandler(w http.ResponseWriter, r *http.Request) {
+// Handler is a http.Handler function that can be added to http server to handle Slack Commands
+func Handler(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 		log.Printf("Error while parsing request data: %v", err)
 		contactAdminMsg(w)
