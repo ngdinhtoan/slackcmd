@@ -15,6 +15,8 @@ func StartServer(host, port, path string) {
 	http.HandleFunc(path, commandHandler)
 
 	address := host + ":" + port
+
+	log.Printf("Server is listening at %s%s...", address, path)
 	if err := http.ListenAndServe(address, nil); err != nil {
 		log.Fatalf("Could not start server: %v", err)
 	}

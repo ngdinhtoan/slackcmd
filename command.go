@@ -41,7 +41,7 @@ func Register(cmd Commander) {
 	}
 }
 
-// RegisterByName a command with commander which will process command
+// registerByName a command with commander which will process command
 func registerByName(name string, cmd Commander) {
 	registerLock.Lock()
 	defer registerLock.Unlock()
@@ -54,8 +54,18 @@ func registerByName(name string, cmd Commander) {
 }
 
 func commandHandler(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	if err := r.ParseForm(); err != nil {
+		log.Printf("Error while parsing request data: %v", err)
+		contactAdminMsg(w)
+		return
+	}
+
 	payload := newPayloadByForm(r.Form)
+	if !payload.IsValid() {
+		log.Printf("Payload data is invalid: %+v", payload)
+		contactAdminMsg(w)
+		return
+	}
 
 	cmd, found := regCommand[payload.Command]
 	if !found {
@@ -64,11 +74,15 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if cmd.ValidateToken(payload.Token) == false {
-		io.WriteString(w, "Your command is invalid! Please contact your administrator for advice.")
+		contactAdminMsg(w)
 		return
 	}
 
 	if err := cmd.Execute(payload, w); err != nil {
 		io.WriteString(w, err.Error())
 	}
+}
+
+func contactAdminMsg(w io.Writer) {
+	io.WriteString(w, "Something goes wrong, please contact your administrator.")
 }

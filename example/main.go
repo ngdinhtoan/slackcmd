@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/ngdinhtoan/slackcmd"
 	_ "github.com/ngdinhtoan/slackcmd/jira"
@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Loading configuration")
+	log.Println("Loading configuration")
 	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
 	if err := viper.ReadInConfig(); err != nil {
@@ -37,6 +37,6 @@ func main() {
 	//		return attach
 	//	})
 
-	fmt.Println("Starting server")
+	log.Println("Starting server")
 	slackcmd.StartServer("127.0.0.1", "12345", "/slackcmd")
 }

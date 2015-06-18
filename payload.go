@@ -20,6 +20,15 @@ func (p *Payload) IsPrivateGroup() bool {
 	return p.ChannelName == "privategroup"
 }
 
+// IsValid return true if payload is valid, otherwise return false
+// required fields: Token, Command, ChannelName, ChannelID (to retrieve ChannelName if it's private group!!!)
+func (p *Payload) IsValid() bool {
+	return p.Token != "" &&
+		p.ChannelName != "" &&
+		p.ChannelID != "" &&
+		p.Command != ""
+}
+
 // newPayloadByForm create payload from post/get form from request
 func newPayloadByForm(form url.Values) *Payload {
 	return &Payload{
