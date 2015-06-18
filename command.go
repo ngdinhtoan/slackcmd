@@ -69,7 +69,7 @@ func commandHandler(w http.ResponseWriter, r *http.Request) {
 
 	cmd, found := regCommand[payload.Command]
 	if !found {
-		io.WriteString(w, fmt.Sprintf("Command %q was not found: %+v", payload.Command, payload))
+		io.WriteString(w, fmt.Sprintf("Command %q was not found", payload.Command))
 		return
 	}
 
