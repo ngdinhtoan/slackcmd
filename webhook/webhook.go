@@ -11,13 +11,12 @@ import (
 
 // SendMessageToHook will send a message to Slack via Incoming WebHooks to specific web hook
 func SendMessageToHook(payload *Payload, webHookURL string) error {
-	params := url.Values{}
-
 	payloadData, err := json.Marshal(payload)
 	if err != nil {
 		return err
 	}
 
+	params := url.Values{}
 	params.Set("payload", string(payloadData))
 
 	_, err = http.PostForm(webHookURL, params)

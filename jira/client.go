@@ -33,9 +33,14 @@ func getMarkdownUsername(user *jc.User) string {
 		return ""
 	}
 
-	if user.Active {
-		return user.DisplayName
+	var name string
+	if name := user.DisplayName; name == "" {
+		name = user.Name
 	}
 
-	return "_" + user.DisplayName + " (inactive)_"
+	if user.Active {
+		return name
+	}
+
+	return "_" + name + " (inactive)_"
 }
