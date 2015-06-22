@@ -29,7 +29,7 @@ type hello struct{}
 
 func (h *hello) GetCommand() []string { return []string{"/command1", "command2"} }
 func (h *hello) Execute(_ *Payload, _ http.ResponseWriter) error {
-	return errors.New("Command executed")
+	return errors.New("command executed")
 }
 func (h *hello) ValidateToken(token string) bool { return token == "token" }
 
