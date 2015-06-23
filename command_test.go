@@ -71,7 +71,7 @@ func TestCommandHandler(t *testing.T) {
 
 	payload.Set("command", "/command1")
 	Handler(w, req)
-	assert.Equal("Command executed", w.data)
+	assert.Equal("command executed", w.data)
 
 	// case wrong tocken
 	payload.Set("token", "102932083213")
