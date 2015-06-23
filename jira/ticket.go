@@ -46,11 +46,7 @@ func (t *ticket) Execute(payload *slackcmd.Payload, w http.ResponseWriter) error
 
 	whPayload := webhook.NewPayload()
 	whPayload.Text = fmt.Sprintf("`%s %s`", payload.Command, payload.Text)
-	if payload.IsPrivateGroup() == false {
-		whPayload.Channel = "#" + payload.ChannelName
-	} else {
-		//todo: get channel name by channel ID via Slack API!?
-	}
+	whPayload.Channel = payload.ChannelID
 
 	wg := &sync.WaitGroup{}
 	lk := &sync.Mutex{}
@@ -79,7 +75,7 @@ func (t *ticket) Execute(payload *slackcmd.Payload, w http.ResponseWriter) error
 
 	wg.Wait()
 
-	webhook.SendMessage(whPayload)
+	go webhook.SendMessage(whPayload)
 
 	var err error
 	if len(notFoundIssues) > 0 {
