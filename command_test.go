@@ -31,7 +31,13 @@ func (h *hello) GetCommand() []string { return []string{"/command1", "command2"}
 func (h *hello) Execute(_ *Payload, _ http.ResponseWriter) error {
 	return errors.New("command executed")
 }
-func (h *hello) ValidateToken(token string) bool { return token == "token" }
+func (h *hello) Validate(payload *Payload) error {
+	if payload.Token != "token" {
+		return ErrTokenInvalid
+	}
+
+	return nil
+}
 
 // TestCommandHandler
 func TestCommandHandler(t *testing.T) {
@@ -73,7 +79,7 @@ func TestCommandHandler(t *testing.T) {
 	Handler(w, req)
 	assert.Equal("command executed", w.data)
 
-	// case wrong tocken
+	// case wrong token
 	payload.Set("token", "102932083213")
 	Handler(w, req)
 	assert.Equal(adminMsg, w.data)

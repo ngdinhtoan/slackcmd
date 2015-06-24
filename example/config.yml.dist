@@ -4,8 +4,8 @@ jira:
   api_path: /rest/api/2
   activity_path: /activity
   auth:
-   login: username
-   password: password
+    login: username
+    password: password
   priority_color:
     P0: danger
     P1: danger
@@ -14,3 +14,7 @@ jira:
 # config for webhook package
 webhook:
   incomming_url: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+# slackcmd
+slackcmd:
+  tokens:
+    ticket: 0FuSnVlgAUIseoiKy7N9oxaM

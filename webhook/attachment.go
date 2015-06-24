@@ -71,6 +71,7 @@ func NewAttachment(text, title, titleURL string) *Attachment {
 	attachment.Title = title
 	attachment.TitleLink = titleURL
 
+	attachment.SetColorToGood()
 	attachment.setDefaultMrkDwnIn()
 	return attachment
 }

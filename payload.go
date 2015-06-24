@@ -1,6 +1,11 @@
 package slackcmd
 
-import "net/url"
+import (
+	"errors"
+	"net/url"
+
+	"github.com/spf13/viper"
+)
 
 // Payload contains all information that Slack post to server
 type Payload struct {
@@ -21,7 +26,7 @@ func (p *Payload) IsPrivateGroup() bool {
 }
 
 // IsValid return true if payload is valid, otherwise return false
-// required fields: Token, Command, ChannelName, ChannelID (to retrieve ChannelName if it's private group!!!)
+// required fields: Token, Command, ChannelName, ChannelID
 func (p *Payload) IsValid() bool {
 	return p.Token != "" &&
 		p.ChannelName != "" &&
@@ -42,4 +47,38 @@ func newPayloadByForm(form url.Values) *Payload {
 		Command:     form.Get("command"),
 		Text:        form.Get("text"),
 	}
+}
+
+// PayloadValidator define interface which will be used to verify payload
+type PayloadValidator interface {
+	// Validate will check if given token (sent by Slack) is same as registered token for command
+	Validate(payload *Payload) error
+}
+
+// NewTokenValidator return an implement of PayloadValidator
+// token validator will check if token sent by Slack Commands are match with token that in configuration
+func NewTokenValidator() PayloadValidator {
+	return &tokenValidator{}
+}
+
+var (
+	// ErrTokenInvalid return when validate token failed
+	ErrTokenInvalid = errors.New("token is invalid")
+)
+
+// tokenValidator used to validate token of Slack payload
+type tokenValidator struct{}
+
+// Validate token of Slack payload with configured token in app
+func (t *tokenValidator) Validate(payload *Payload) error {
+	tokens := viper.GetStringMapString("slackcmd.tokens")
+	command := payload.Command[1:]
+
+	if token, found := tokens[command]; found {
+		if token != payload.Token {
+			return ErrTokenInvalid
+		}
+	}
+
+	return nil
 }

@@ -1,29 +1,29 @@
 package slackcmd
 
 import (
-	"fmt"
-	"io"
+	"errors"
 	"log"
 	"net/http"
 	"strings"
 	"sync"
 )
 
-// Commander interface define function that a command must have
+var (
+	regCommand     = map[string]Commander{}
+	regMutex       = &sync.Mutex{}
+	errCmdNotFound = errors.New("command not found")
+)
+
+// Commander interface define function that a command must have;
+// If your commander also implement PayloadValidator interface,
+// then Handler will use it instead of default one (token validator).
 type Commander interface {
 	// GetCommand return list of command can be serve by commander
 	GetCommand() []string
 	// Execute will receive Slack command payload when Slack send payload to server
 	// when an error is returned, error message will be sent to user who type command
 	Execute(payload *Payload, w http.ResponseWriter) error
-	// ValidateToken will check if given token (sent by Slack) is same as registered token for command
-	ValidateToken(token string) bool
 }
-
-var (
-	regCommand   = map[string]Commander{}
-	registerLock = sync.Mutex{}
-)
 
 // Register a commander which will process command
 func Register(cmd Commander) {
@@ -43,8 +43,8 @@ func Register(cmd Commander) {
 
 // registerByName a command with commander which will process command
 func registerByName(name string, cmd Commander) {
-	registerLock.Lock()
-	defer registerLock.Unlock()
+	regMutex.Lock()
+	defer regMutex.Unlock()
 
 	if _, found := regCommand[name]; found {
 		log.Fatalf("Command %q is registered already!", name)
@@ -53,37 +53,14 @@ func registerByName(name string, cmd Commander) {
 	regCommand[name] = cmd
 }
 
-// Handler is a http.Handler function that can be added to http server to handle Slack Commands
-func Handler(w http.ResponseWriter, r *http.Request) {
-	if err := r.ParseForm(); err != nil {
-		log.Printf("Error while parsing request data: %v", err)
-		contactAdminMsg(w)
-		return
+// getCommander return registered commander by name, if not found then return error.
+func getCommander(name string) (cmd Commander, err error) {
+	regMutex.Lock()
+	defer regMutex.Unlock()
+
+	if cmd, found := regCommand[name]; found {
+		return cmd, nil
 	}
 
-	payload := newPayloadByForm(r.Form)
-	if !payload.IsValid() {
-		log.Printf("Payload data is invalid: %+v", payload)
-		contactAdminMsg(w)
-		return
-	}
-
-	cmd, found := regCommand[payload.Command]
-	if !found {
-		io.WriteString(w, fmt.Sprintf("Command %q was not found", payload.Command))
-		return
-	}
-
-	if cmd.ValidateToken(payload.Token) == false {
-		contactAdminMsg(w)
-		return
-	}
-
-	if err := cmd.Execute(payload, w); err != nil {
-		io.WriteString(w, err.Error())
-	}
-}
-
-func contactAdminMsg(w io.Writer) {
-	io.WriteString(w, "Something goes wrong, please contact your administrator.")
+	return nil, errCmdNotFound
 }

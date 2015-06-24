@@ -85,11 +85,6 @@ func (t *ticket) Execute(payload *slackcmd.Payload, w http.ResponseWriter) error
 	return err
 }
 
-// ValidateToken check if token in payload are match with registered token
-func (t *ticket) ValidateToken(token string) bool {
-	return true
-}
-
 func (t *ticket) fetchIssue(issueID string) (attach *webhook.Attachment, err error) {
 	issue := getIssueDetail(issueID)
 	if issue.Id == "" {
