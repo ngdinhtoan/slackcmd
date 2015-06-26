@@ -72,12 +72,21 @@ func NewAttachment(text, title, titleURL string) *Attachment {
 	attachment.TitleLink = titleURL
 
 	attachment.SetColorToGood()
-	attachment.setDefaultMrkDwnIn()
+	attachment.SetMarkDownFields("pretext", "text", "fields")
 	return attachment
 }
 
-func (a *Attachment) setDefaultMrkDwnIn() {
-	a.MrkDwnIn = []string{"pretext", "text", "fields"}
+// SetMarkDownFields set fields which are in MarkDown format,
+// note that it will overwrite previous values.
+// Valid values: "pretext", "text", "fields".
+func (a *Attachment) SetMarkDownFields(fields ...string) {
+	a.MrkDwnIn = fields
+}
+
+// AddMarkDownField will append new field to current list of markdown fields.
+// Valid values: "pretext", "text", "fields".
+func (a *Attachment) AddMarkDownField(field string) {
+	a.MrkDwnIn = append(a.MrkDwnIn, field)
 }
 
 // AddField will append an attachment field to list of fields
