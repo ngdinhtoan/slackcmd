@@ -68,9 +68,9 @@ func (h *helloworld) GetCommand() []string {
 	return []string{"/hello"}
 }
 
-// ValidateToken always return true
-func (h *helloworld) ValidateToken(token string) bool {
-	return true
+// Validate payload always return nil
+func (h *helloworld) Validate(payload *slackcmd.Payload) error {
+	return nil
 }
 
 // Execute will say hello to user, who enter /hello command
@@ -124,6 +124,10 @@ the output should be
     Hello SlackCmd
 
 #### Use package `webhook` to send rich message to Slack
+
+    import "github.com/ngdinhtoan/slackcmd/webhook"
+
+[![GoDoc](https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook?status.svg)](https://godoc.org/github.com/ngdinhtoan/slackcmd/webhook)
 
 Data that is sent to `http.ResponseWriter` will only be visible to the user who issued the command.
 

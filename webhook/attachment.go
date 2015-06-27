@@ -30,7 +30,7 @@ var (
 	ErrColorInvalid = errors.New("inputed color is invalid, it should be 'good', 'warning', 'danger' or a hex color")
 )
 
-// Field represent a field object in attachment fields array
+// Field represent a field object in attachment fields array,
 // see https://api.slack.com/docs/attachments
 type Field struct {
 	Title string `json:"title"`
@@ -46,7 +46,7 @@ func NewField(title, value string) *Field {
 	}
 }
 
-// Attachment represent an attachment object
+// Attachment represent an attachment object,
 // see https://api.slack.com/docs/attachments
 type Attachment struct {
 	Fallback   string   `json:"fallback,omitempty"`
@@ -101,7 +101,7 @@ func (a *Attachment) AddShortField(title, value string) {
 	a.Fields = append(a.Fields, field)
 }
 
-// SetColor is used to set color to field color of attachment
+// SetColor is used to set color to field color of attachment,
 // color can 'good', 'warning', 'danger' or a hex color
 func (a *Attachment) SetColor(color string) error {
 	if strings.HasPrefix(color, "#") {

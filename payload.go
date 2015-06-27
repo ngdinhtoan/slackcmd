@@ -25,8 +25,8 @@ func (p *Payload) IsPrivateGroup() bool {
 	return p.ChannelName == "privategroup"
 }
 
-// IsValid return true if payload is valid, otherwise return false
-// required fields: Token, Command, ChannelName, ChannelID
+// IsValid return true if payload is valid, otherwise return false;
+// Required fields: Token, Command, ChannelName, ChannelID.
 func (p *Payload) IsValid() bool {
 	return p.Token != "" &&
 		p.ChannelName != "" &&
@@ -55,8 +55,9 @@ type PayloadValidator interface {
 	Validate(payload *Payload) error
 }
 
-// NewTokenValidator return an implement of PayloadValidator
-// token validator will check if token sent by Slack Commands are match with token that in configuration
+// NewTokenValidator return an implement of PayloadValidator,
+// token validator will check if token sent by Slack Commands
+// are match with token that in configuration
 func NewTokenValidator() PayloadValidator {
 	return &tokenValidator{}
 }

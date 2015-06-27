@@ -5,7 +5,7 @@ Example send hello message to Slack via Incomming Webhook:
 
     package main
 
-    import "github/ngdinhtoan/slackcmd/webhook"
+    import "github.com/ngdinhtoan/slackcmd/webhook"
 
     func main() {
         payload := webhook.NewPayload()
@@ -21,7 +21,7 @@ Send rich message by Message Attachments (see https://api.slack.com/docs/attachm
 
     package main
 
-    import "github/ngdinhtoan/slackcmd/webhook"
+    import "github.com/ngdinhtoan/slackcmd/webhook"
 
     func main() {
         payload := webhook.NewPayload()

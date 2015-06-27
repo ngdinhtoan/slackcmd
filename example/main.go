@@ -1,3 +1,10 @@
+// Package example is to show how to use SlackCmd with JIRA command plugin.
+// Just copy `config.yml.dist` to `config.yml` and replace temporary config by your config.
+// Start server by below command:
+//
+// 		go run main.go
+//
+// and enjoy it
 package main
 
 import (

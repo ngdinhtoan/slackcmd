@@ -48,7 +48,7 @@ func contactAdminMsg(w io.Writer) {
 	io.WriteString(w, "Something goes wrong, please contact your administrator.")
 }
 
-// StartServer start server which will receive and process Slack command
+// StartServer start a server which will receive and process Slack command
 func StartServer(host, port, path string) {
 	if strings.TrimSpace(path) == "" {
 		path = "/"
