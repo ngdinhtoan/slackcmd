@@ -51,13 +51,15 @@ func newPayloadByForm(form url.Values) *Payload {
 
 // PayloadValidator define interface which will be used to verify payload
 type PayloadValidator interface {
-	// Validate will check if given token (sent by Slack) is same as registered token for command
+	// Validate payload return nil if payload is valid, otherwise return an error
 	Validate(payload *Payload) error
 }
 
 // NewTokenValidator return an implement of PayloadValidator,
-// token validator will check if token sent by Slack Commands
-// are match with token that in configuration
+// TokenValidator will check if token sent by Slack Commands are match with token that in configuration.
+// Token in configuration will be load by Viper (github.com/spf13/viper) at key `slackcmd.tokens`,
+// that key should be a map of comand and token, check `config.yml.dist` in package example.
+// If token was not configured, then the payload is always valid with any token.
 func NewTokenValidator() PayloadValidator {
 	return &tokenValidator{}
 }

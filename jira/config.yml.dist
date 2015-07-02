@@ -5,8 +5,3 @@ jira:
   auth:
    login: username
    password: password
-  priority_color:
-    P0: danger
-    P1: danger
-    P2: warning
-    P3: good
