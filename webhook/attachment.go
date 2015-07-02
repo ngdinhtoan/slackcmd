@@ -61,7 +61,7 @@ type Attachment struct {
 	ImageURL   string   `json:"image_url,omitemtpy"`
 	ThumbURL   string   `json:"thumb_url,omitemtpy"`
 	Fields     []*Field `json:"fields,omitemtpy"`
-	MrkDwnIn   []string `json:"mrkdwn_in"`
+	MrkDwnIn   []string `json:"mrkdwn_in,omitempty"`
 }
 
 // NewAttachment create new attachment object, with good color by default
