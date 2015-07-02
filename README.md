@@ -27,9 +27,7 @@ don't want the changes in master branch affect to your project,
 use SlackCmd `v1` by
 
 ```go
-import (
-    slackcmd "gopkg.in/ngdinhtoan/slackcmd.v1"
-)
+import slackcmd "gopkg.in/ngdinhtoan/slackcmd.v1"
 ```
 
 ### How to use SlackCmd
@@ -112,14 +110,14 @@ Send a test request:
                  -d team_id=T0001 \
                  -d team_domain=example \
                  -d user_id=U2147483697 \
-                 -d user_name=Steve
+                 -d user_name=Steve \
                  -d channel_id=C2147483705 \
                  -d channel_name=test \
                  -d command=/hello \
                  -d text=SlackCmd \
                  -- http://localhost:9191
 
-the output should be
+the output should be:
 
     Hello SlackCmd
 
@@ -134,13 +132,13 @@ Data that is sent to `http.ResponseWriter` will only be visible to the user who 
 If the command needs to post to a channel so that all members can see it,
 you need to use incomming webhook to send message to channel.
 
-You can check package `github.com/ngdinhtoan/slackcmd/jira` as an example
+You can check package `github.com/ngdinhtoan/slackcmd/jira` as an example.
 
 ### Contribution
 
 If you have a contribution, new commander or any idea to share, feel free to create a pull request or open a ticket,
-or join to chat [here](https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+or join to chat [here](https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
 
 ### License
 
-SlackCmd is licensed under the [MIT License](https://github.com/ngdinhtoan/slackcmd/blob/master/LICENSE)
+SlackCmd is licensed under the [MIT License](https://github.com/ngdinhtoan/slackcmd/blob/master/LICENSE).
