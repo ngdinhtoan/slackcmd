@@ -4,6 +4,7 @@ import (
 	"net/url"
 	"testing"
 
+	"github.com/spf13/viper"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -32,4 +33,15 @@ func TestPayload(t *testing.T) {
 	assert.NotNil(payload)
 	assert.True(payload.IsValid())
 	assert.False(payload.IsPrivateGroup())
+}
+
+func TestTokenValidator(t *testing.T) {
+	viper.Set("slackcmd.tokens", map[string]string{"ticket": "94972394739423492"})
+	validator := NewTokenValidator()
+
+	err := validator.Validate(&Payload{Token: "abcelksjdfldsf", Command: "/ticket"})
+	assert.Equal(t, ErrTokenInvalid, err)
+
+	err = validator.Validate(&Payload{Token: "94972394739423492", Command: "/ticket"})
+	assert.Nil(t, err)
 }

@@ -1,0 +1,52 @@
+hash: 4bb60b34a9655956b8d345af7e1a51390924accefae9217abb53f686daa2d6b9
+updated: 2016-01-22T12:23:42.241582563+07:00
+imports:
+- name: github.com/armon/consul-api
+  version: dcfedd50ed5334f96adee43fc88518a4f095e15c
+  repo: https://github.com/armon/consul-api
+- name: github.com/BurntSushi/toml
+  version: 5c4df71dfe9ac89ef6287afc05e4c1b16ae65a1e
+- name: github.com/coreos/go-etcd
+  version: 003851be7bb0694fe3cc457a49529a19388ee7cf
+- name: github.com/hashicorp/hcl
+  version: 578dd9746824a54637686b51a41bad457a56bcef
+  repo: https://github.com/hashicorp/hcl
+- name: github.com/kr/pretty
+  version: e6ac2fc51e89a3249e82157fa0bb7a18ef9dd5bb
+- name: github.com/kr/pty
+  version: f7ee69f31298ecbe5d2b349c711e2547a617d398
+  repo: https://github.com/kr/pty
+- name: github.com/kr/text
+  version: bb797dc4fb8320488f47bf11de07a733d7233e1f
+- name: github.com/magiconair/properties
+  version: c81f9d71af8f8cba1466501d30326b99a4e56c19
+- name: github.com/mitchellh/mapstructure
+  version: 281073eb9eb092240d33ef253c404f1cca550309
+- name: github.com/ngdinhtoan/go-jira-client
+  version: d9a7c542ec2b1603bb948c3dcc112b4643388aad
+- name: github.com/plouc/go-jira-client
+  version: 3341487aa1a84da5a6e3d1b9b8c0ca6455fb180b
+- name: github.com/spf13/cast
+  version: ee7b3e0353166ab1f3a605294ac8cd2b77953778
+- name: github.com/spf13/jwalterweatherman
+  version: d00654080cddbd2b082acaa74007cb94a2b40866
+- name: github.com/spf13/pflag
+  version: 7f60f83a2c81bc3c3c0d5297f61ddfa68da9d3b7
+- name: github.com/spf13/viper
+  version: a212099cbe6fbe8d07476bfda8d2d39b6ff8f325
+- name: github.com/ugorji/go
+  version: 646ae4a518c1c3be0739df898118d9bccf993858
+- name: github.com/xordataexchange/crypt
+  version: 749e360c8f236773f28fc6d3ddfce4a470795227
+  repo: https://github.com/xordataexchange/crypt
+- name: golang.org/x/crypto
+  version: 3760e016850398b85094c4c99e955b8c3dea5711
+- name: gopkg.in/fsnotify.v1
+  version: 8611c35ab31c1c28aa903d33cf8b6e44a399b09e
+  repo: https://gopkg.in/fsnotify.v1
+- name: gopkg.in/yaml.v2
+  version: f7716cbe52baa25d2e9b0d0da546fcf909fc16b4
+- name: launchpad.net/goyaml
+  version: ""
+  repo: https://launchpad.net/goyaml
+devImports: []

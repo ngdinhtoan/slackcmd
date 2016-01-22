@@ -1,0 +1,6 @@
+package: github.com/ngdinhtoan/slackcmd
+import:
+- package: github.com/ngdinhtoan/go-jira-client
+  version: d9a7c542ec2b1603bb948c3dcc112b4643388aad
+- package: github.com/spf13/viper
+  version: a212099cbe6fbe8d07476bfda8d2d39b6ff8f325
