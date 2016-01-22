@@ -6,7 +6,7 @@ A simple server to receive and handle Slack Commands written in GO (known as Gol
 
 [![GoDoc](https://godoc.org/github.com/ngdinhtoan/slackcmd?status.svg)](https://godoc.org/github.com/ngdinhtoan/slackcmd)
 [![Build Status](https://travis-ci.org/ngdinhtoan/slackcmd.svg)](https://travis-ci.org/ngdinhtoan/slackcmd)
-[![Join the chat at https://gitter.im/ngdinhtoan/slackcmd](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Coverage](http://gocover.io/_badge/github.com/ngdinhtoan/slackcmd)](http://gocover.io/github.com/ngdinhtoan/slackcmd)
 
 ### Install and import SlackCmd
 
