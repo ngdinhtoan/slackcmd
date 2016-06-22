@@ -1,16 +1,19 @@
 language: go
 
 go:
- - 1.2
- - 1.3
- - release
+ - 1.5
  - tip
+
+before_install:
+ - go get github.com/mattn/goveralls
+ - go get golang.org/x/tools/cmd/cover
 
 script:
  - go fmt ./...
  - go vet ./...
  - go test -v ./...
  - go build -v ./...
+ - $HOME/gopath/bin/goveralls -service=travis-ci
 
 install:
  - go get github.com/spf13/viper
