@@ -135,7 +135,7 @@ You can check package `github.com/ngdinhtoan/slackcmd/jira` as an example.
 ### Contribution
 
 If you have a contribution, new commander or any idea to share, feel free to create a pull request or open a ticket,
-or join to chat [here](https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge).
+or join to chat [![Gitter](https://badges.gitter.im/ngdinhtoan/slackcmd.svg)](https://gitter.im/ngdinhtoan/slackcmd?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge).
 
 ### License
 
