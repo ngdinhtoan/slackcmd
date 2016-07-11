@@ -98,7 +98,7 @@ func (t *ticket) fetchIssue(issueID string) (attach *webhook.Attachment, err err
 	return
 }
 
-// PrepareAttachmentFunc will create attachment for incomming webhook payload
+// PrepareAttachmentFunc will create attachment for incoming webhook payload
 type PrepareAttachmentFunc func(issue *jc.Issue) *webhook.Attachment
 
 var defaultPrepareAttachmentFunc PrepareAttachmentFunc = func(issue *jc.Issue) *webhook.Attachment {

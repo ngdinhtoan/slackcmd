@@ -13,7 +13,6 @@ import (
 	"github.com/ngdinhtoan/slackcmd"
 	_ "github.com/ngdinhtoan/slackcmd/jira"
 	"github.com/spf13/viper"
-
 	//	// feel free to custom issue attachment
 	//	"github.com/ngdinhtoan/slackcmd/jira"
 	//	"github.com/ngdinhtoan/slackcmd/webhook"

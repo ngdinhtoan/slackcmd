@@ -1,7 +1,7 @@
 // Package webhook provide some useful structs and functions
-// to send message to Slack via Incomming Webhook.
+// to send message to Slack via Incoming Webhook.
 /*
-Example send hello message to Slack via Incomming Webhook:
+Example send hello message to Slack via Incoming Webhook:
 
     package main
 

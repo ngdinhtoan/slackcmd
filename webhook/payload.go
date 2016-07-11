@@ -1,6 +1,6 @@
 package webhook
 
-// Payload define payload structure for Slack incomming webhook
+// Payload define payload structure for Slack incoming webhook
 type Payload struct {
 	Text        string        `json:"text,omitempty"`
 	Channel     string        `json:"channel,omitempty"`
